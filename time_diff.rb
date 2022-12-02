@@ -42,15 +42,41 @@ def sub_sum_p2(arr)
     max
 end
 
-def first_anagram?(str)
-    letters = str.split("")
-    letters.permutation.to_a
+def first_anagram?(str1, str2)
+    letters = str1.split("")
+    perms = letters.permutation.to_a
+    perms.include?(str2.split(""))
 end
 
 def second_anagram?(str1, str2)
-    str1.each_with_index do |ele, idx|
+    str1.each_char do |ele|
         if str2.include?(ele)
-            str2.index(ele)
+            idx = str2.index(ele)
+            str2[idx] =""
+        end
+    end
+    str2 == ""
 end
 
+def third_anagram?(str1, str2)
+    str1.split('').sort == str2.split('').sort
+end
 
+def fourth_anagram?(str1, str2)
+    count1 = Hash.new(0)
+    count2 = Hash.new(0)
+    str1.each_char {|char| count1[char]+= 1}
+    str2.each_char {|char| count2[char]+= 1}
+    count1 == count2
+end
+
+def bad_two_sum?(arr, target)
+    arr.each_with_index do |ele1, idx1|
+        arr.each_with_index do |ele2, idx2|
+            if idx1 < idx2 
+                return true if ele1 + ele2 == target
+            end
+        end
+    end
+    false
+end
