@@ -41,3 +41,16 @@ def sub_sum_p2(arr)
     end
     max
 end
+
+def first_anagram?(str)
+    letters = str.split("")
+    letters.permutation.to_a
+end
+
+def second_anagram?(str1, str2)
+    str1.each_with_index do |ele, idx|
+        if str2.include?(ele)
+            str2.index(ele)
+end
+
+
