@@ -1,3 +1,5 @@
+require "byebug"
+
 def my_min(arr)
     min = 0
     (0...arr.length).each do |idx1|
@@ -26,3 +28,25 @@ def sub_sum_p1(arr)
     max = subs.map {|sub| sub.sum}
     max.max
 end
+
+def sub_sum_p2(arr)
+    max = 0
+    current = arr.shift
+    current_2 = 0
+    i = 0
+    while i <= arr.length
+        # debugger
+        current += arr[i]
+        current_2 = arr[i]
+        current += arr[i+1] if i != arr.length-1
+        max = current_2 if current_2 > max
+        max = current if current > max
+        i += 0
+    end
+    max
+end
+
+p sub_sum_p2([2,3,-6,7,-6,7])
+
+
+# 5,4,3,2,1
